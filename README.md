@@ -4,7 +4,7 @@ ADS-B data, graphs and basic analysis for the crash of [Chinese Eastern Flight 5
 
 For educational purposes only.
 
-[Download KML](https://raw.githubusercontent.com/cathaypacific8747/mu5735/master/out.kml)
+[Download KML](https://github.com/cathaypacific8747/mu5735/releases/download/v0.1/MU5735-Flightradar24-Granular-Data.kml)
 
 ## Flight Path
 
@@ -20,16 +20,9 @@ Top view:
 Entire path:
 ![entire](img/entire_path.png)
 
-## Flight Parameters
+## Flight Parameter changes before crash
 
-Altitude:
 ![altitude](img/altitude.png)
-
-Speed
 ![speed](img/speed.png)
-
-Vertical Speed
 ![verticalspeed](img/vertical_speed.png)
-
-Heading
 ![heading](img/heading.png)
