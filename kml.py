@@ -4,15 +4,18 @@ from fastkml.geometry import Geometry
 from fastkml.styles import Style, LineStyle
 from shapely.geometry import Point, LineString
 from colour import Color
+from datetime import date, datetime
 
 colours = list(Color("#ff0000").range_to(Color("#00ffff"), 256))
 
 k = kml.KML()
 d = kml.Document()
+f_r = kml.Folder(name='route')
+f_p = kml.Folder(name='points')
 
 df = pandas.read_csv('combined.csv')
-df_s = [(i.lng, i.lat, i.altitude * 0.3048) for i in df.itertuples()]
-min_alt, max_alt = min(j[-1] for j in df_s), max(j[-1] for j in df_s)
+df_s = [(i.lng, i.lat, i.altitude*0.3048) for i in df.itertuples()]
+min_alt, max_alt = df.altitude.min()*0.3048, df.altitude.max()*0.3048
 
 for j in range(len(df_s)-1):
     this_alt = (df_s[j][-1] + df_s[j+1][-1]) / 2
@@ -27,8 +30,22 @@ for j in range(len(df_s)-1):
         Point(*df_s[j+1]),
     ]), altitude_mode="absolute")
 
-    d.append(p)
+    f_r.append(p)
 
+d.append(f_r)
+
+for j in range(len(df)):
+    ji = df.iloc[j]
+
+    p = kml.Placemark(
+        name=str(datetime.fromtimestamp(df.iloc[j].timestamp).isoformat()),
+        description=f'({ji.lat}, {ji.lng}) @ {ji.altitude} ft\nGS: {ji.speed} kt, VS: {ji.vs} fpm, {ji.heading}°\nSquawk: {ji.squawk}'
+    )
+    p.geometry = Geometry(geometry=Point(*df_s[j]), altitude_mode="absolute")
+
+    f_p.append(p)
+
+d.append(f_p)
 k.append(d)
 
 with open('out.kml', 'w+', encoding='utf-8') as f:
