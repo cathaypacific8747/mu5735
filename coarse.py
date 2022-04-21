@@ -20,4 +20,4 @@ for point in data['result']['response']['data']['flight']['track']:
     extracted_data.append((timestamp, lat, lng, altitude, speed, vs, heading, squawk))
 
 df = pandas.DataFrame(extracted_data, columns=['timestamp', 'lat', 'lng', 'altitude', 'speed', 'vs', 'heading', 'squawk'])
-df.to_csv('coarse.csv', index=False)
+df.to_csv('data/coarse.csv', index=False)

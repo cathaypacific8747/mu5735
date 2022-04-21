@@ -4,7 +4,7 @@ from fastkml.geometry import Geometry
 from fastkml.styles import Style, LineStyle
 from shapely.geometry import Point, LineString
 from colour import Color
-from datetime import date, datetime
+from datetime import datetime
 
 colours = list(Color("#ff0000").range_to(Color("#00ffff"), 256))
 
@@ -13,7 +13,7 @@ d = kml.Document()
 f_r = kml.Folder(name='route')
 f_p = kml.Folder(name='points')
 
-df = pandas.read_csv('combined.csv')
+df = pandas.read_csv('data/combined.csv')
 df_s = [(i.lng, i.lat, i.altitude*0.3048) for i in df.itertuples()]
 min_alt, max_alt = df.altitude.min()*0.3048, df.altitude.max()*0.3048
 
