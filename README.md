@@ -6,12 +6,12 @@ For educational purposes only.
 
 [Download KML](https://github.com/cathaypacific8747/mu5735/releases/download/v0.1/MU5735-Flightradar24-Granular-Data.kml)
 
-To generate the KML:
+To generate KML:
 ```
 $ sudo apt-get install python3-lxml
 $ pip3 install urllib3 pandas fastkml shapely colour
 $ python3 coarse.py # download data from fr24, save to data/coarse.csv
-$ python3 kml.py    # process data from combined.csv, output KML
+$ python3 kml.py    # process data from data/combined.csv, output KML
 ```
 
 ## Additional information from CAAC Preliminary Report
@@ -19,6 +19,7 @@ $ python3 kml.py    # process data from combined.csv, output KML
 [Source](http://www.caac.gov.cn/XXGK/XXGK/TZTG/202204/t20220420_212895.html)
 
 `14:20:55` - Guangzhou FIR radar indicates "deviation from assigned altitude", no response from flight crew
+
 `14:21:40` - Final radar contact: ALT - 3380m/11089ft, GS - 1010kmh/545kt, HDG - 117
 
 ## Flight Path
